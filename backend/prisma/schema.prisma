@@ -1,0 +1,330 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  student
+  HR
+}
+
+enum LayoutType {
+  single
+  double
+  minimal
+  modern
+}
+
+enum ResumeStatus {
+  draft
+  published
+  archived
+}
+
+enum Visibility {
+  private
+  shared
+  public
+}
+
+enum ProficiencyLevel {
+  beginner
+  intermediate
+  expert
+}
+
+enum LanguageProficiency {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+  native
+}
+
+enum AchievementType {
+  completion
+  badge
+  grade
+}
+
+enum AuditAction {
+  created
+  updated
+  deleted
+  exported
+}
+
+model User {
+  user_id     String   @id @default(cuid())
+  full_name   String
+  email       String   @unique
+  password    String
+  lms_user_id String?  @unique
+  role        Role     @default(student)
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  resumes         Resume[]
+  refreshTokens   RefreshToken[]
+  lmsAchievements LmsAchievement[]
+  auditLogs       AuditLog[]
+  resumeVersions  ResumeVersion[]
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id         String   @id @default(cuid())
+  token_hash String   @unique
+  user_id    String
+  expires_at DateTime
+  revoked    Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  @@map("refresh_tokens")
+}
+
+model ResumeTemplate {
+  resume_id    String     @id @default(cuid())
+  resume_name  String
+  layout_type  LayoutType @default(single)
+  theme_config Json?
+  is_system    Boolean    @default(false)
+  is_active    Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  resumes Resume[]
+
+  @@map("resume_templates")
+}
+
+model Resume {
+  id              String       @id @default(cuid())
+  title           String
+  status          ResumeStatus @default(draft)
+  visibility      Visibility   @default(private)
+  current_version Int          @default(1)
+  share_token     String?      @unique
+  user_id         String
+  template_id     String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  user     User            @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  template ResumeTemplate? @relation(fields: [template_id], references: [resume_id])
+
+  versions       ResumeVersion[]
+  education      Education[]
+  workExperience WorkExperience[]
+  projects       Project[]
+  certifications Certification[]
+  languages      Language[]
+  resumeSkills   ResumeSkill[]
+  resumeLmsItems ResumeLmsItem[]
+
+  @@map("resumes")
+}
+
+model ResumeVersion {
+  id              String   @id @default(cuid())
+  version_number  Int
+  snapshot        Json
+  change_summary  String?
+  resume_id       String
+  created_by      String
+  createdAt       DateTime @default(now())
+
+  resume  Resume @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+  creator User   @relation(fields: [created_by], references: [user_id])
+
+  @@map("resume_versions")
+}
+
+model Education {
+  id             String    @id @default(cuid())
+  institution    String
+  degree         String
+  field_of_study String?
+  gpa            Float?
+  start_date     DateTime
+  end_date       DateTime?
+  display_order  Int       @default(0)
+  resume_id      String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  resume Resume @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+
+  @@map("education")
+}
+
+model WorkExperience {
+  id            String    @id @default(cuid())
+  company       String
+  position      String
+  location      String?
+  description   String?
+  start_date    DateTime
+  end_date      DateTime?
+  is_current    Boolean   @default(false)
+  display_order Int       @default(0)
+  resume_id     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  resume Resume @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+
+  @@map("work_experience")
+}
+
+model Skill {
+  id              String   @id @default(cuid())
+  name            String
+  normalized_name String   @unique
+  category        String?
+  createdAt       DateTime @default(now())
+
+  resumeSkills ResumeSkill[]
+
+  @@map("skills")
+}
+
+model ResumeSkill {
+  id               String           @id @default(cuid())
+  proficiency_level ProficiencyLevel @default(beginner)
+  display_order    Int              @default(0)
+  resume_id        String
+  skill_id         String
+  createdAt        DateTime         @default(now())
+
+  resume Resume @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+  skill  Skill  @relation(fields: [skill_id], references: [id])
+
+  @@unique([resume_id, skill_id])
+  @@map("resume_skills")
+}
+
+model Project {
+  id            String    @id @default(cuid())
+  title         String
+  description   String?
+  url           String?
+  start_date    DateTime?
+  end_date      DateTime?
+  display_order Int       @default(0)
+  resume_id     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  resume Resume @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+
+  @@map("projects")
+}
+
+model Certification {
+  id             String    @id @default(cuid())
+  name           String
+  issuing_org    String
+  credential_id  String?
+  credential_url String?
+  issue_date     DateTime
+  expiry_date    DateTime?
+  display_order  Int       @default(0)
+  resume_id      String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  resume Resume @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+
+  @@map("certifications")
+}
+
+model Language {
+  id            String              @id @default(cuid())
+  language      String
+  proficiency   LanguageProficiency @default(A1)
+  display_order Int                 @default(0)
+  resume_id     String
+  createdAt     DateTime            @default(now())
+
+  resume Resume @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+
+  @@map("languages")
+}
+
+model LmsCourse {
+  id           String   @id @default(cuid())
+  title        String
+  code         String   @unique
+  category     String?
+  credit_hours Float?
+  is_published Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  achievements LmsAchievement[]
+
+  @@map("lms_courses")
+}
+
+model LmsAchievement {
+  id              String          @id @default(cuid())
+  type            AchievementType
+  grade           String?
+  score           Float?
+  certificate_url String?
+  completed_at    DateTime
+  user_id         String
+  course_id       String
+  createdAt       DateTime        @default(now())
+
+  user           User            @relation(fields: [user_id], references: [user_id])
+  course         LmsCourse       @relation(fields: [course_id], references: [id])
+  resumeLmsItems ResumeLmsItem[]
+
+  @@map("lms_achievements")
+}
+
+model ResumeLmsItem {
+  id             String   @id @default(cuid())
+  is_visible     Boolean  @default(true)
+  display_order  Int      @default(0)
+  resume_id      String
+  achievement_id String
+  createdAt      DateTime @default(now())
+
+  resume      Resume         @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+  achievement LmsAchievement @relation(fields: [achievement_id], references: [id])
+
+  @@unique([resume_id, achievement_id])
+  @@map("resume_lms_items")
+}
+
+model AuditLog {
+  id           String      @id @default(cuid())
+  entity_type  String
+  entity_id    String
+  action       AuditAction
+  old_values   Json?
+  new_values   Json?
+  ip_address   String?
+  performed_by String
+  createdAt    DateTime    @default(now())
+
+  user User @relation(fields: [performed_by], references: [user_id])
+
+  @@map("audit_log")
+}
