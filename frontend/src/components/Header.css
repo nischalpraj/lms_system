@@ -1,7 +1,7 @@
 .top-part {
   background: linear-gradient(90deg, #064420 13%, #176f16 49%, #34b92d 76%);
   width: 100vw;
-  height: 300px;
+  height: 800px;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  width: 1100px;
+  width: 1200px;
   position: absolute;
   top: 0;
 }
@@ -88,19 +88,60 @@
 }
 
 .demo:hover {
-  background: rgba(0, 129, 0, 1.90);
-  border-color: rgba(0, 129, 0, 1.90);
+  background: rgba(0, 129, 0, 1.9);
+  border-color: rgba(0, 129, 0, 1.9);
 }
-
 
 .Signup {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 2px #162d45;;
-  background:#162d45;
+  border: solid 2px #162d45;
+  background: #162d45;
   width: 88px;
   height: 36px;
   border-radius: 30px;
+}
+
+.text-img {
+  margin-top: 80px;
+  border: 1px solid white;
+  width: 1050px;
+  height: 700px;
+  display: flex;
+  flex-direction: row;
+}
+
+.Text {
+  border: 1px solid red;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}
+.main-text {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+  color: rgb(218, 213, 213);
+  font-size: 78px;
+  margin-left: 30px;
   
+}
+
+.sub-text{
+    font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+    font-size:28px;
+    color:rgb(224, 219, 219);
+    margin: 0px 0px 100px 30px;
+}
+.first-image {
+  border: 1px solid yellow;
+  flex: 1;
 }

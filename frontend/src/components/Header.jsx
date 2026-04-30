@@ -2,7 +2,6 @@ import React from "react";
 import "./Header.css";
 import logo from "../assets/header_logo.png";
 
-
 const Header = () => {
   return (
     <div className="top-part">
@@ -26,6 +25,18 @@ const Header = () => {
             <a href="/signup">Sign Up</a>
           </div>
         </div>
+      </div>
+      <div className="text-img">
+        <div className="Text">
+          <div className="main-text">
+            Leap your career like a frog.
+          </div>
+          <div className="sub-text">
+            Built on industry standards with real-world practice and
+            employment-focused learning.
+          </div>
+        </div>
+        <div className="first-image"></div>
       </div>
     </div>
   );
