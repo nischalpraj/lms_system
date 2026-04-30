@@ -16,8 +16,15 @@ const Header = () => {
           <a href="/organizations">for organizations</a>
         </div>
         <div className="auth-links">
-          <a href="/login">Login</a>
-          <a href="/signup">Sign Up</a>
+          <div className="login">
+            <a href="/login">Login</a>
+          </div>
+          <div className="demo">
+            <a href="/demo">Request a Demo</a>
+          </div>
+          <div className="Signup">
+            <a href="/signup">Sign Up</a>
+          </div>
         </div>
       </div>
     </div>
