@@ -19,14 +19,26 @@ const Marquee = () => {
   return (
     <div className="main-container">
       <div className="text">Trusted by over 2,000+ customers</div>
-      <div className="border">
+      <div className="flex MyGradient">
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: "-100%" }}
-          className="flex gap-20">
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="flex gap-20 flex-shrink-0">
           {logo.map((image, index) => {
             return (
-              <img className="h-40 w-60" src={image} alt="logo" key={index} />
+              <img className="h-20 w-30" src={image} alt="logo" key={index} />
+            );
+          })}
+        </motion.div>
+        <motion.div
+          initial={{ x: 0 }}
+          animate={{ x: "-100%" }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="flex gap-20 flex-shrink-0">
+          {logo.map((image, index) => {
+            return (
+              <img className="h-20 w-30" src={image} alt="logo" key={index} />
             );
           })}
         </motion.div>

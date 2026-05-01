@@ -1,13 +1,21 @@
-<<<<<<< HEAD
+
 @import "tailwindcss";
-=======
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
->>>>>>> eabff70c2990fd226a504826b6907cec1d305635
+
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.MyGradient {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
 }
