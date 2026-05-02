@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Marquee from "./components/Marquee";
 import Hero2 from "./components/Hero2";
+import Hero3 from "./components/Hero3"
 import "./App.css";
 
 function App() {
