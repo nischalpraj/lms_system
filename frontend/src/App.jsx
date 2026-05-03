@@ -4,7 +4,8 @@ import Marquee from "./components/Marquee";
 import Hero2 from "./components/Hero2";
 import Hero3 from "./components/Hero3";
 import Award from "./components/Award";
-import Contact from "./components/Contact"
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
       <Hero2 />
       <Hero3 />
       <Award />
-      <Contact/>
+      <Contact />
+      <Footer/>
     </div>
   );
 }
