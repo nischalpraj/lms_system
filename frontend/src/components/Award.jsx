@@ -1,6 +1,6 @@
-import React from 'react';
-import "./Award.css"
-import badge from "../assets/badges.png"
+import React from "react";
+import "./Award.css";
+import badge from "../assets/badges.png";
 
 const Award = () => {
   return (
@@ -8,15 +8,15 @@ const Award = () => {
       <div className="award-text">
         <div className="award-quote">Every award is a win-for you.</div>
         <div className="award-subquote">
-          Awards are good. Results are even better. At Leapforg connect, we aim for
-          both.
+          Awards are good. Results are even better. At Leapforg connect, we aim
+          for both.
         </div>
-          </div>
-          <div className="badge">
-              <img src={badge}/>
-          </div>
+      </div>
+      <div className="badge">
+              <img src={badge} />
+      </div>
     </div>
   );
-}
+};
 
-export default Award
+export default Award;

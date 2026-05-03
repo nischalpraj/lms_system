@@ -28,3 +28,10 @@
     font-size: 22px;
     color: rgb(73, 68, 68);;
 }
+.badge{
+    margin-top: 20px;
+   
+}
+.badge img{
+     height:192px;
+}
