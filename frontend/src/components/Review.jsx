@@ -191,7 +191,7 @@ function ReviewCard({ review, distance }) {
 }
 
 export default function ReviewsCarousel() {
-const [current, setCurrent] = useState(Math.floor(reviews.length / 2));
+  const [current, setCurrent] = useState(Math.floor(reviews.length / 2));
   const trackRef = useRef(null);
   const dragStart = useRef(null);
 
