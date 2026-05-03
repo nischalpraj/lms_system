@@ -1,185 +1,6 @@
-const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
-
-  .lf-footer {
-    background: #ffffff;
-    font-family: 'DM Sans', sans-serif;
-    color: #1a1a1a;
-    border-top: 1px solid #e5e5e5;
-  }
-
-  .lf-footer * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  /* ── Top section ── */
-  .lf-top {
-    padding: 48px 80px 16px;
-  }
-
-  .lf-logo {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-    margin-bottom: 40px;
-  }
-
-  .lf-logo-icon {
-    width: 20px;
-    height: 28px;
-  }
-
-  .lf-logo-text {
-    font-size: 1.35rem;
-    font-weight: 400;
-    color: #1a1a1a;
-    letter-spacing: -0.02em;
-  }
-
-  .lf-logo-text span {
-    font-weight: 300;
-  }
-
-  /* ── Grid ── */
-  .lf-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    padding-bottom: 48px;
-  }
-
-  .lf-brand p.lf-tagline {
-    font-size: 0.97rem;
-    font-weight: 700;
-    color: #111;
-    line-height: 1.4;
-    margin-bottom: 14px;
-    max-width: 320px;
-  }
-
-  .lf-brand p.lf-desc {
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: #444;
-    line-height: 1.65;
-    max-width: 340px;
-  }
-
-  .lf-col h4 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #111;
-    margin-bottom: 18px;
-  }
-
-  .lf-col ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .lf-col ul li a {
-    font-size: 0.83rem;
-    font-weight: 400;
-    color: #555;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .lf-col ul li a:hover {
-    color: #3ab54a;
-  }
-
-  /* Social icons */
-  .lf-social-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .lf-social-list li a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.83rem;
-    font-weight: 400;
-    color: #555;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .lf-social-list li a:hover {
-    color: #3ab54a;
-  }
-
-  .lf-social-list li a svg {
-    flex-shrink: 0;
-  }
-
-  /* ── Bottom bar ── */
-  .lf-bottom {
-    border-top: 1px solid #e0e0e0;
-    padding: 20px 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .lf-policy-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    margin-bottom: 20px;
-    padding: 0 80px;
-  }
-
-  .lf-policy-links a {
-    font-size: 0.78rem;
-    color: #555;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .lf-policy-links a:hover {
-    color: #3ab54a;
-  }
-
-  .lf-copyright {
-    font-size: 0.78rem;
-    color: #555;
-  }
-
-  .lf-bottom-logo {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    text-decoration: none;
-  }
-
-  .lf-bottom-logo svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .lf-bottom-logo-text {
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: #1a1a1a;
-    letter-spacing: -0.01em;
-  }
-
-  @media (max-width: 900px) {
-    .lf-top { padding: 40px 24px 16px; }
-    .lf-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .lf-policy-links { padding: 0 24px; flex-wrap: wrap; gap: 16px; }
-    .lf-bottom { padding: 20px 24px; }
-  }
-
-  @media (max-width: 560px) {
-    .lf-grid { grid-template-columns: 1fr; }
-  }
-`;
+import React from "react";
+import "./Footer.css";
+import leapfrog from "../assets/footer_connect_logo.svg";
 
 // SVG Icons
 const IconEmail = () => (
@@ -228,41 +49,17 @@ const IconLinkedIn = () => (
 );
 
 const LeapfrogIcon = () => (
-  <svg
-    width="20"
-    height="28"
-    viewBox="0 0 20 28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 0L0 8L4 10L0 14L10 28L20 14L16 10L20 8L10 0Z" fill="#c6e835" />
-    <path d="M10 4L3 10L10 24L17 10L10 4Z" fill="#3ab54a" />
-  </svg>
+ <img src={leapfrog}/>
 );
 
-const LeapfrogBottomIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 20 28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 0L0 8L4 10L0 14L10 28L20 14L16 10L20 8L10 0Z" fill="#c6e835" />
-    <path d="M10 4L3 10L10 24L17 10L10 4Z" fill="#3ab54a" />
-  </svg>
-);
 
 export default function Footer() {
   return (
-    <>
-      <style>{styles}</style>
       <footer className="lf-footer">
         {/* Top */}
         <div className="lf-top">
           <a href="/" className="lf-logo">
             <LeapfrogIcon />
-            <span className="lf-logo-text">
-              Leapfrog <span>Connect</span>
-            </span>
           </a>
 
           <div className="lf-grid">
@@ -278,22 +75,8 @@ export default function Footer() {
                 international job market.
               </p>
             </div>
-
-            {/* Connect */}
-            <div className="lf-col">
-              <h4>Connect</h4>
-              <ul>
-                <li>
-                  <a href="/learners">for Learners</a>
-                </li>
-                <li>
-                  <a href="/academics">for Academics</a>
-                </li>
-                <li>
-                  <a href="/enterprises">for Enterprises</a>
-                </li>
-              </ul>
-            </div>
+           
+  
 
             {/* Courses */}
             <div className="lf-col">
@@ -363,11 +146,10 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             className="lf-bottom-logo">
-            <LeapfrogBottomIcon />
-            <span className="lf-bottom-logo-text">leapfrog</span>
+           <img src={leapfrog} width="168px"/>
+            
           </a>
         </div>
       </footer>
-    </>
   );
 }
