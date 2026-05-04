@@ -1,6 +1,6 @@
 import React from "react";
 import "./Award.css";
-import badge from "../assets/badges.png";
+import badge from "../../assets/badges.png";
 
 const Award = () => {
   return (

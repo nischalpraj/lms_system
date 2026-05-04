@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
-import logo from "../assets/header_logo.png";
-import frogie from "../assets/frogie.png";
+import logo from "../../assets/header_logo.png";
+import frogie from "../../assets/frogie.png";
 
 const Header = () => {
   return (

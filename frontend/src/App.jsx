@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Header from "./components/Header";
-import Marquee from "./components/Marquee";
-import Hero2 from "./components/Hero2";
-import Hero3 from "./components/Hero3";
-import Award from "./components/Award";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import Header from "./components/Landingpage/Header";
+import Marquee from "./components/Landingpage/Marquee";
+import Hero2 from "./components/Landingpage/Hero2";
+import Hero3 from "./components/Landingpage/Hero3";
+import Award from "./components/Landingpage/Award";
+import Contact from "./components/Landingpage/Contact";
+import Footer from "./components/Landingpage/Footer";
 import "./App.css";
 
 function App() {

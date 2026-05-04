@@ -1,8 +1,8 @@
 import React from "react";
 import "./Hero2.css";
-import img from "../assets/img.png";
-import admin from "../assets/admin.png";
-import customerservice from "../assets/customer-service.png";
+import img from "../../assets/img.png";
+import admin from "../../assets/admin.png";
+import customerservice from "../../assets/customer-service.png";
 import Button from "./Button";
 
 const Hero2 = () => {
@@ -70,8 +70,14 @@ const Hero2 = () => {
               your growth at every step. We ensure fast, reliable help so you
               can stay focused on learning and results.
             </div>
-            <div className="explore-btn3">
-              <Button text="Learn more" color="#3a3a3a"></Button>
+            <div
+              className="explore-btn3"
+              onClick={() => {
+                document.getElementById("contact")?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}>
+              <Button text="Contact Us" color="#3a3a3a"></Button>
             </div>
           </div>
         </div>
